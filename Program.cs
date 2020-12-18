@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NAudio.Wave;
 
 namespace SRPlayer
 {
@@ -10,6 +11,7 @@ namespace SRPlayer
         private List<Channel> Channels;
         private Channel SelectedChannel;
         private string[] ChannelNames;
+        private Menu Menu;
 
         public Program()
         {
@@ -48,8 +50,8 @@ namespace SRPlayer
                             "SRPlayer är en liten applikation för att lyssna på Sveriges Radio.\n" +
                             "Använd piltangenterna för att navigera i menyn. Tryck sedan Enter.";
             string[] options = { "Välj kanal", "Om", "Avsluta" };
-            Menu mainMenu = new Menu(prompt, options);
-            int selectedIndex = mainMenu.Run();
+            Menu = new Menu(prompt, options);
+            int selectedIndex = Menu.Run();
 
             switch (selectedIndex)
             {
@@ -68,8 +70,8 @@ namespace SRPlayer
         private void ChannelPicker()
         {
             string prompt = ":: Välj kanal ::";
-            Menu mainMenu = new Menu(prompt, ChannelNames);
-            int selectedIndex = mainMenu.Run();
+            Menu = new Menu(prompt, ChannelNames);
+            int selectedIndex = Menu.Run();
 
             SelectedChannel = Channels[selectedIndex];
             
@@ -77,13 +79,13 @@ namespace SRPlayer
         }
 
         private void StreamPlaying()
-        {            
+        {
             string prompt = $":: {SelectedChannel.Name} ::\n\n" +
                             SelectedChannel.Tagline.Replace(". ", ".\n");
             string[] options = { "Pausa uppspelning", "Ändra kanal", "Till huvudmenyn" };
-            Menu mainMenu = new Menu(prompt, options);
-            int selectedIndex = mainMenu.Run();
-
+            Menu = new Menu(prompt, options);
+            int selectedIndex = Menu.Run();
+            
             switch (selectedIndex)
             {
                 case 0:
@@ -103,8 +105,8 @@ namespace SRPlayer
             string prompt = $":: {SelectedChannel.Name} :: [PAUSAD]\n\n" +
                             SelectedChannel.Tagline.Replace(". ", ".\n");
             string[] options = { "Återuppta uppspelning", "Ändra kanal", "Till huvudmenyn" };
-            Menu mainMenu = new Menu(prompt, options);
-            int selectedIndex = mainMenu.Run();
+            Menu = new Menu(prompt, options);
+            int selectedIndex = Menu.Run();
 
             switch (selectedIndex)
             {
@@ -126,8 +128,8 @@ namespace SRPlayer
                             "Skapades av Johannes Nilsson, som ett avlutande projekt i kursen DT086G.\n" +
                             "All data hämtas från Sveriges Radios Öppna API som finns tillgängligt här:\nhttp://www.blalalal.se";
             string[] options = { "Till huvudmenyn" };
-            Menu mainMenu = new Menu(prompt, options);
-            int selectedIndex = mainMenu.Run();
+            Menu = new Menu(prompt, options);
+            int selectedIndex = Menu.Run();
 
             switch (selectedIndex)
             {
