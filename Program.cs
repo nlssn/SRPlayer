@@ -10,8 +10,6 @@ namespace SRPlayer
         private List<Channel> Channels;
         private Channel SelectedChannel;
         private string[] ChannelNames;
-        private Stream Audio;
-        private bool Streaming;
 
         public Program()
         {
@@ -29,9 +27,6 @@ namespace SRPlayer
                 tempList.Add(ch.Name);
             }
             ChannelNames = tempList.ToArray();
-
-            // Streaming false
-            Streaming = false;
         }
 
         static void Main(string[] args)
@@ -82,10 +77,7 @@ namespace SRPlayer
         }
 
         private void StreamPlaying()
-        {
-            Audio = new Stream(SelectedChannel.Url);
-            Audio.Play();
-            
+        {            
             string prompt = $":: {SelectedChannel.Name} ::\n\n" +
                             SelectedChannel.Tagline.Replace(". ", ".\n");
             string[] options = { "Pausa uppspelning", "Ändra kanal", "Till huvudmenyn" };
@@ -98,13 +90,9 @@ namespace SRPlayer
                     StreamPaused();
                     break;
                 case 1:
-                    Audio.Stop();
-                    Streaming = false;
                     ChannelPicker();
                     break;
                 case 2:
-                    Audio.Stop();
-                    Streaming = false;
                     MainMenu();
                     break;
             }
@@ -112,8 +100,6 @@ namespace SRPlayer
 
         private void StreamPaused()
         {
-            Audio.Pause();
-
             string prompt = $":: {SelectedChannel.Name} :: [PAUSAD]\n\n" +
                             SelectedChannel.Tagline.Replace(". ", ".\n");
             string[] options = { "Återuppta uppspelning", "Ändra kanal", "Till huvudmenyn" };
@@ -123,18 +109,12 @@ namespace SRPlayer
             switch (selectedIndex)
             {
                 case 0:
-                    Audio.Stop();
-                    Streaming = false;
                     StreamPlaying();
                     break;
                 case 1:
-                    Audio.Stop();
-                    Streaming = false;
                     ChannelPicker();
                     break;
                 case 2:
-                    Audio.Stop();
-                    Streaming = false;
                     MainMenu();
                     break;
             }

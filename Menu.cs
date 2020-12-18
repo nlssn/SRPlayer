@@ -14,7 +14,6 @@ namespace SRPlayer
         private string[] Options; // An array of options that the menu will display
         private int SelectedIndex; // The index of the option that the user has selected
 
-
         // Constructor
         public Menu(string prompt, string[] options)
         {

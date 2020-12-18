@@ -15,6 +15,7 @@ namespace SRPlayer
      *
      * The code is dependant on the Newtonsoft.Json package.
      */
+
     class Api
     {
         // Properties
@@ -94,11 +95,13 @@ namespace SRPlayer
         }
     }
 
+    // The response class
     public class Response
     {
         public JArray Channels { get; set; }
     }
 
+    // The channel class
     public class Channel
     {
         public int Id { get; set; }
