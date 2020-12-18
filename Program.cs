@@ -67,7 +67,7 @@ namespace SRPlayer
 
         private void ChannelPicker()
         {
-            string prompt = ":: Välj kanal :: " + SRPlayer.Stream.count;
+            string prompt = ":: Välj kanal ::";
             Menu mainMenu = new Menu(prompt, ChannelNames);
             int selectedIndex = mainMenu.Run();
 
